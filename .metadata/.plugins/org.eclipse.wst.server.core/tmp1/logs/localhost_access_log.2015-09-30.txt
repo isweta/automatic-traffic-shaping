@@ -1,0 +1,14 @@
+127.0.0.1 - - [30/Sep/2015:15:20:38 +0530] "GET / HTTP/1.1" 404 951
+0:0:0:0:0:0:0:1 - - [30/Sep/2015:15:20:40 +0530] "GET /GraphicalTrafficAnalyser/Home.jsp HTTP/1.1" 200 4618
+0:0:0:0:0:0:0:1 - - [30/Sep/2015:15:20:41 +0530] "GET /GraphicalTrafficAnalyser/DataServlet HTTP/1.1" 200 1621
+127.0.0.1 - - [30/Sep/2015:15:25:40 +0530] "GET / HTTP/1.1" 404 951
+0:0:0:0:0:0:0:1 - - [30/Sep/2015:15:25:41 +0530] "GET /AutomaticTrafficShapingGUI/Home.jsp HTTP/1.1" 200 591
+0:0:0:0:0:0:0:1 - - [30/Sep/2015:15:25:41 +0530] "GET /AutomaticTrafficShapingGUI/Header.jsp HTTP/1.1" 200 488
+0:0:0:0:0:0:0:1 - - [30/Sep/2015:15:25:41 +0530] "GET /AutomaticTrafficShapingGUI/RefreshLatest.jsp HTTP/1.1" 200 687
+0:0:0:0:0:0:0:1 - - [30/Sep/2015:15:25:41 +0530] "GET /AutomaticTrafficShapingGUI/RefreshAnalyzer.jsp HTTP/1.1" 200 703
+0:0:0:0:0:0:0:1 - - [30/Sep/2015:15:25:41 +0530] "GET /AutomaticTrafficShapingGUI/Refresh.jsp HTTP/1.1" 200 675
+0:0:0:0:0:0:0:1 - - [30/Sep/2015:15:25:41 +0530] "GET /AutomaticTrafficShapingGUI/ManualChange.jsp HTTP/1.1" 200 814
+0:0:0:0:0:0:0:1 - - [30/Sep/2015:15:25:41 +0530] "GET /AutomaticTrafficShapingGUI/Footer.jsp HTTP/1.1" 200 391
+0:0:0:0:0:0:0:1 - - [30/Sep/2015:15:25:47 +0530] "GET /AutomaticTrafficShapingGUI/AnalyzerStatus.jsp HTTP/1.1" 200 1030
+0:0:0:0:0:0:0:1 - - [30/Sep/2015:15:25:47 +0530] "GET /AutomaticTrafficShapingGUI/TrafficFlowStatsLatest.jsp HTTP/1.1" 200 1106
+0:0:0:0:0:0:0:1 - - [30/Sep/2015:15:25:47 +0530] "GET /AutomaticTrafficShapingGUI/TrafficFlowStats.jsp HTTP/1.1" 200 1782860
