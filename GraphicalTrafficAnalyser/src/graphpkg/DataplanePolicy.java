@@ -13,8 +13,6 @@ import org.json.JSONObject;
 
 public class DataplanePolicy {
 
-	
-
 	public static String getDataplanePolicyName() {
 		String str = getJSONString();
 		JSONObject obj = new JSONObject(str);
@@ -22,9 +20,6 @@ public class DataplanePolicy {
 		JSONObject dataplane = (JSONObject) dataplanes.get(0);
 		String policyname = dataplane.getString("vyatta-policy-qos:qos-policy");
 
-		//System.out.println(obj);
-
-		// return policyname;
 		return policyname;
 
 	}
@@ -34,15 +29,10 @@ public class DataplanePolicy {
 		URLConnection yc = null;
 		HttpURLConnection connection = null;
 		int code = 0;
-		String policy = "";
-		URL oracle2 = null;
-		URLConnection yc2 = null;
-		HttpURLConnection connection2 = null;
-		int code1 = 0;
 
 		try {
 
-			oracle = new URL(
+			oracle = new URL(// CHANGE//
 					"http://10.76.110.84:8181/restconf/config/opendaylight-inventory:nodes/node/vRouter-R1/yang-ext:mount/vyatta-interfaces:interfaces/vyatta-interfaces-dataplane:dataplane/dp0p224p1/");
 
 			connection = (HttpURLConnection) oracle.openConnection();
@@ -58,8 +48,7 @@ public class DataplanePolicy {
 		}
 
 		if (code != 200) {
-			//System.out.println("No Such Policy");
-			//System.out.println(code);
+
 			System.exit(0);
 
 		}
@@ -82,7 +71,7 @@ public class DataplanePolicy {
 					response.append(inputLine + "\n");
 
 				}
-				// System.out.println(response);
+
 			} catch (IOException e1) {
 
 				e1.printStackTrace();

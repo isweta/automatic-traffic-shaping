@@ -25,50 +25,48 @@ import graphpkg.DataplanePolicyDescription;
 @WebServlet("/DataServlet")
 public class DataServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DataServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String paths = "C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\graphText.txt";
+	public DataServlet() {
+		super();
+
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String paths = "C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\graphText.txt";// CHANGE//
 
 		File fileObject = new File(paths);
 
 		BufferedReader br = new BufferedReader(new FileReader(paths));
-		StringBuffer message=new StringBuffer();
-		String line =br.readLine();
+		StringBuffer message = new StringBuffer();
+		String line = br.readLine();
 		message.append(line);
-		line=br.readLine();
-		while(line!=null){
-				message.append(line);
-				if((line=br.readLine())!=null)
-					message.append(",");
-			
-			
+		line = br.readLine();
+		while (line != null) {
+			message.append(line);
+			if ((line = br.readLine()) != null)
+				message.append(",");
+
 		}
-			
-			
-			
-		
-		
-		
+
 		PrintWriter out = response.getWriter();
-        out.println(message.toString());
+		out.println(message.toString());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
