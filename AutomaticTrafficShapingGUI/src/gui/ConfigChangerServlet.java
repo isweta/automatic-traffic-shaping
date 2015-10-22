@@ -28,7 +28,6 @@ public class ConfigChangerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String newThreshold=request.getParameter("threshold");
-		System.out.println(newThreshold);
 		ConfigChanger.changeConfig(newThreshold);;
 		response.sendRedirect("ManualChange.jsp");
 	}

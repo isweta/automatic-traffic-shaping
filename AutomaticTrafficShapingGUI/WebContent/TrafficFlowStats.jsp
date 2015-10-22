@@ -16,7 +16,7 @@
 
 <body>
 	<%
-		String paths = "C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\data2.txt";
+		String paths = System.getenv().get("AUTO_SHAPER")+"\\data2.txt";
 
 		File fileObject = new File(paths);
 

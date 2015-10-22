@@ -59,7 +59,7 @@ public class PolicyPusher {
 
 		try {
 			oracle = new URL(//CHANGE//
-					"http://10.76.110.84:8181/restconf/config/opendaylight-inventory:nodes/node/vRouter-R1/yang-ext:mount/vyatta-policy:policy/vyatta-policy-qos:qos/"
+					ConfigReader.getControllerURL()+"/restconf/config/opendaylight-inventory:nodes/node/vRouter-R1/yang-ext:mount/vyatta-policy:policy/vyatta-policy-qos:qos/"
 							+ policyName);
 
 			HttpURLConnection connection = (HttpURLConnection) oracle.openConnection();

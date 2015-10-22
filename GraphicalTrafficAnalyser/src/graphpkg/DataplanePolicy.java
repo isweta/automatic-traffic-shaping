@@ -32,8 +32,8 @@ public class DataplanePolicy {
 
 		try {
 
-			oracle = new URL(// CHANGE//
-					"http://10.76.110.84:8181/restconf/config/opendaylight-inventory:nodes/node/vRouter-R1/yang-ext:mount/vyatta-interfaces:interfaces/vyatta-interfaces-dataplane:dataplane/dp0p224p1/");
+			oracle = new URL(ConfigReader.getControllerURL()+
+					"/restconf/config/opendaylight-inventory:nodes/node/vRouter-R1/yang-ext:mount/vyatta-interfaces:interfaces/vyatta-interfaces-dataplane:dataplane/"+ConfigReader.getDataplaneName()+"/");
 
 			connection = (HttpURLConnection) oracle.openConnection();
 

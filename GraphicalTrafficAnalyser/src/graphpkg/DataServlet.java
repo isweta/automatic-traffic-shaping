@@ -41,7 +41,7 @@ public class DataServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String paths = "C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\graphText.txt";// CHANGE//
+		String paths = System.getenv().get("AUTO_SHAPER")+"\\graphText.txt";// CHANGE//
 
 		File fileObject = new File(paths);
 

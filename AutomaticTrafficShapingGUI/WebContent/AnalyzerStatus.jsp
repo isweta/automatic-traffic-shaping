@@ -18,7 +18,7 @@
 <body >
 
 <%
-		String paths = "C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\policyChangeLog.txt";
+		String paths = System.getenv().get("AUTO_SHAPER")+"\\policyChangeLog.txt";
 
 		File fileObject = new File(paths);
 

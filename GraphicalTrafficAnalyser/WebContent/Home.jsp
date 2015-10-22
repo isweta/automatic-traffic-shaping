@@ -37,8 +37,7 @@ body {
 <script>
 	var request;
 	function sendInfo() {
-		//var v=document.vinform.t1.value;  
-		console.log("reached");
+		
 		var url = "DataServlet";
 
 		if (window.XMLHttpRequest) {
@@ -51,7 +50,7 @@ body {
 			request.onreadystatechange = function() {
 				if (request.readyState == 4) {
 					var val = request.responseText;
-					//document.getElementById('amit').innerHTML=val;  
+					  
 					if (val != null)
 						showGraph(val);
 				}
@@ -65,10 +64,10 @@ body {
 	}
 
 	function showGraph(val1) {
-		//console.log(val1);
+		
 		JSON.parse('{"result":true,"count":1}');
 		var val = JSON.parse('[' + val1 + ']');
-		//console.log(val);	  
+			  
 		var dataset1 = val;
 
 		var margin = {
@@ -79,7 +78,7 @@ body {
 		}, width = 1900 - margin.left - margin.right, height = 900 - margin.top
 				- margin.bottom;
 
-		//var parseDate = d3.time.format("%Y%m%d").parse;
+		
 		var x = d3.scale.ordinal().rangeRoundBands([ 0, width ], .2);
 		var y = d3.scale.linear().rangeRound([ height, 0 ]);
 		var color = d3.scale.category10();
@@ -111,9 +110,7 @@ body {
 		
 		update(dataset1);
 
-		/* var transitionInterval = setInterval(function () {
-		update(dataset2);
-		}, 1000);  */
+		
 
 		function update(dataset) {
 
@@ -126,7 +123,7 @@ body {
 
 			console.log(d3.keys(dataset[0]));
 
-			var efteValues = color.domain().map(function(name) {
+			var bandwidthValues = color.domain().map(function(name) {
 				return {
 					name : name,
 					values : dataset.map(function(d) {
@@ -137,23 +134,13 @@ body {
 					})
 				};
 			});
-			console.log(efteValues[0]);
+			console.log(bandwidthValues[0]);
 
 			x.domain(dataset.map(function(d) {
 				return d.Timestamp;
 			}));
 
-			/*  y.domain([
-			 d3.min(efteValues, function (c) {
-			     return d3.min(c.values, function (v) {
-			         return v.qValue;
-			     });
-			 }),
-			 d3.max(efteValues, function (c) {
-			     return d3.max(c.values, function (v) {
-			         return v.qValue;
-			     });
-			 })]);  */
+			
 
 			y.domain([ 0, 2048 ]);
 
@@ -162,17 +149,17 @@ body {
 
 			d3.transition(svg).select('.x.axis').call(xAxis);
 
-			var city = svg.selectAll(".city").data(efteValues);
+			var trafficClass = svg.selectAll(".trafficClass").data(bandwidthValues);
 
-			var cityEnter = city.enter().append("g").attr("class", "city");
+			var trafficClassEnter = trafficClass.enter().append("g").attr("class", "trafficClass");
 
-			cityEnter.append("path").attr("class", "line").attr("d",
+			trafficClassEnter.append("path").attr("class", "line").attr("d",
 					function(d) {
 						return line(d.values);
 					}).style("stroke", function(d) {
 				return color(d.name);
 			});
-			cityEnter.append("text").datum(function(d) {
+			trafficClassEnter.append("text").datum(function(d) {
 				return {
 					name : d.name,
 					value : d.values[d.values.length - 1]
@@ -186,16 +173,16 @@ body {
 				return d.name;
 			});
 
-			// transition by selecting 'city'...
-			cityUpdate = d3.transition(city);
+			// transition by selecting 'trafficClass'...
+			trafficClassUpdate = d3.transition(trafficClass);
 
 			// ... and each path within
-			cityUpdate.select('path').transition().duration(600).attr("d",
+			trafficClassUpdate.select('path').transition().duration(600).attr("d",
 					function(d) {
 						return line(d.values);
 					});
 
-			city.exit().remove();
+			trafficClass.exit().remove();
 
 		}
 

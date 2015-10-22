@@ -25,9 +25,6 @@ public class DataplanePolicy {
 		JSONObject dataplane = (JSONObject) dataplanes.get(0);
 		String policyname = dataplane.getString("vyatta-policy-qos:qos-policy");
 
-		//System.out.println(obj);
-
-		// return policyname;
 		return policyname;
 
 	}
@@ -45,8 +42,8 @@ public class DataplanePolicy {
 
 		try {
 
-			oracle = new URL(
-					"http://10.76.110.84:8181/restconf/config/opendaylight-inventory:nodes/node/vRouter-R1/yang-ext:mount/vyatta-interfaces:interfaces/vyatta-interfaces-dataplane:dataplane/dp0p224p1/");
+			oracle = new URL(ConfigReader.getControllerURL()+
+					"/restconf/config/opendaylight-inventory:nodes/node/vRouter-R1/yang-ext:mount/vyatta-interfaces:interfaces/vyatta-interfaces-dataplane:dataplane/"+ConfigReader.getDataplaneName()+"/");
 
 			connection = (HttpURLConnection) oracle.openConnection();
 
@@ -61,8 +58,7 @@ public class DataplanePolicy {
 		}
 
 		if (code != 200) {
-			//System.out.println("No Such Policy");
-			//System.out.println(code);
+			
 			System.exit(0);
 
 		}
@@ -85,7 +81,7 @@ public class DataplanePolicy {
 					response.append(inputLine + "\n");
 
 				}
-				// System.out.println(response);
+				
 			} catch (IOException e1) {
 
 				e1.printStackTrace();

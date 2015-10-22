@@ -72,9 +72,10 @@ public class DataplanePolicyDescription {
 		HttpURLConnection connection2 = null;
 		int code1 = 0;
 		StringBuffer response = new StringBuffer();
-		try {// CHANGE//
+		try {
 			oracle2 = new URL(
-					"http://10.76.110.84:8181/restconf/config/opendaylight-inventory:nodes/node/vRouter-R1/yang-ext:mount/vyatta-policy:policy/vyatta-policy-qos:qos/"
+					ConfigReader.getControllerURL()+"/restconf/config/opendaylight-inventory:nodes/node/vRouter-R1/yang-ext:mount/vyatta-policy:policy/vyatta-policy-qos:qos/"
+							
 							+ policy);
 
 			connection2 = (HttpURLConnection) oracle2.openConnection();

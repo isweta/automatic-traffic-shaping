@@ -1,5 +1,6 @@
 package gui;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -8,18 +9,23 @@ import java.util.Properties;
 public class ConfigChanger {
 
 	public static void changeConfig(String threshold) {
-		Properties prop = new Properties();
+		
 		OutputStream output = null;
 
 		try {
 
-			output = new FileOutputStream("C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\config.properties");
+			
+			FileInputStream in = new FileInputStream(System.getenv().get("AUTO_SHAPER")+"\\config.properties");
+			Properties prop = new Properties();
+			prop.load(in);
+			in.close();
 
-			// set the properties value
+			FileOutputStream out = new FileOutputStream(System.getenv().get("AUTO_SHAPER")+"\\config.properties");
 			prop.setProperty("threshold", threshold);
-
-			// save properties to project root folder
-			prop.store(output, null);
+			prop.store(out, null);
+			out.close();
+			
+			
 
 		} catch (IOException io) {
 			io.printStackTrace();

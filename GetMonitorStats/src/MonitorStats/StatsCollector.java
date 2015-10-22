@@ -31,16 +31,29 @@ public class StatsCollector {
 	public static void initialise() {
 		for (int i = 0; i < 10; i++)
 			Analyser.tailDropList10.add(0l);
+		
+		try {
+			FileWriter fout = new FileWriter(System.getenv().get("AUTO_SHAPER")+"\\data2.txt",
+					false);
+			fout.close();
+			
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		
+		
+		
 	}
 
 	public static String executeOp() {
 		try {
-			String name = "vyatta";// CHANGE//
-			String pass = "vyatta";// CHANGE//
+			String name = ConfigReader.getRouterName();// CHANGE//
+			String pass = ConfigReader.getRouterPass();// CHANGE//
 			String authString = name + ":" + pass;
 			byte[] authEncBytes = Base64.getEncoder().encode(authString.getBytes());
 			String authStringEnc = new String(authEncBytes);
-			URL url = new URL("http://10.76.110.94/rest/op/show/queuing");// CHANGE//
+			URL url = new URL(ConfigReader.getRouterURL()+"/rest/op/show/queuing");// CHANGE//
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("POST");
 			connection.setDoOutput(true);
@@ -53,6 +66,7 @@ public class StatsCollector {
 			osw.close();
 
 			String loc = connection.getHeaderField("Location");
+			
 			connection.getResponseCode();
 			return loc;
 		} catch (Exception e) {
@@ -65,12 +79,12 @@ public class StatsCollector {
 	public static int getOutput(String loc) {
 		int resCode = 0;
 		try {
-			String name = "vyatta";// CHANGE//
-			String pass = "vyatta";// CHANGE//
+			String name = ConfigReader.getRouterName();// CHANGE//
+			String pass = ConfigReader.getRouterPass();// CHANGE//
 			String authString = name + ":" + pass;
 			byte[] authEncBytes = Base64.getEncoder().encode(authString.getBytes());
 			String authStringEnc = new String(authEncBytes);
-			URL url = new URL("http://10.76.110.94/" + loc);// CHANGE//
+			URL url = new URL(ConfigReader.getRouterURL()+"/" + loc);// CHANGE//
 
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
@@ -156,8 +170,8 @@ public class StatsCollector {
 
 	public static void printData(LocalDateTime currTime, ArrayList<Datagram> allTrafficClasses) {
 		FileWriter fout;
-		try {// CHANGE//
-			fout = new FileWriter("C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\data2.txt",
+		try {
+			fout = new FileWriter(System.getenv().get("AUTO_SHAPER")+"\\data2.txt",
 					true);
 
 			System.out.println("\n" + currTime);
@@ -184,10 +198,10 @@ public class StatsCollector {
 		FileWriter fout;
 		FileWriter foutCurr;
 		try {// CHANGE//
-			fout = new FileWriter("C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\data2.txt",
+			fout = new FileWriter(System.getenv().get("AUTO_SHAPER")+"\\data2.txt",
 					true);
 			foutCurr = new FileWriter(
-					"C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\dataCurr.txt");
+					System.getenv().get("AUTO_SHAPER")+"\\dataCurr.txt");
 
 			System.out.println("\nTimeStamp:" + currTime);
 			fout.append("\nTimeStamp:" + currTime);
@@ -247,7 +261,7 @@ public class StatsCollector {
 		startTime = System.currentTimeMillis();
 		initialise();
 		String QosPolicy = DataplanePolicy.getDataplanePolicyName();
-		System.out.println("\nInterface: dp0p224p1");// CHANGE//
+		System.out.println("\nInterface:"+ ConfigReader.getDataplaneName());// CHANGE//
 		System.out.println("Qos Policy :" + QosPolicy);
 		while (true) {
 

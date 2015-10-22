@@ -35,9 +35,9 @@ public class Graph {
 	public static void printGraphList10() {
 
 		FileWriter fout;
-		try {// CHANGE//
+		try {
 			fout = new FileWriter(
-					"C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\graphText.txt");
+					System.getenv().get("AUTO_SHAPER")+"\\graphText.txt");
 
 			for (String dataPoint : graphList10) {
 				fout.append("\n" + dataPoint);

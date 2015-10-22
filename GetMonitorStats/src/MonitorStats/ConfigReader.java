@@ -13,18 +13,23 @@ public class ConfigReader {
 
 		try {
 
-			input = new FileInputStream(
-					"C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\config.properties");
+		/*	input = new FileInputStream(
+					"C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\config.properties");*/
+			String configPath = System.getenv().get("AUTO_SHAPER");
+			
+			input = new FileInputStream(configPath+"\\config.properties");
 
 			// load a properties file
 			prop.load(input);
 
 			// get the property value
 			String threshold = prop.getProperty("threshold");
+			prop.clear();
 			return Integer.parseInt(threshold);
 
 		} catch (IOException ex) {
 			ex.printStackTrace();
+			
 		} finally {
 			if (input != null) {
 				try {
@@ -39,21 +44,22 @@ public class ConfigReader {
 
 	}
 
-	public static int getDataplaneName() {
+	public static String getDataplaneName() {
 		Properties prop = new Properties();
 		InputStream input = null;
 
 		try {
 
 			input = new FileInputStream(
-					"C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\config.properties");
+					System.getenv().get("AUTO_SHAPER")+"\\config.properties");
 
 			// load a properties file
 			prop.load(input);
 
 			// get the property value
 			String dataplaneName = prop.getProperty("dataplaneName");
-			return Integer.parseInt(dataplaneName);
+			prop.clear();
+			return (dataplaneName);
 
 		} catch (IOException ex) {
 			ex.printStackTrace();
@@ -67,25 +73,26 @@ public class ConfigReader {
 			}
 		}
 
-		return 0;
+		return "";
 
 	}
 
-	public static int getRouterName() {
+	public static String getRouterName() {
 		Properties prop = new Properties();
 		InputStream input = null;
 
 		try {
 
 			input = new FileInputStream(
-					"C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\config.properties");
+					System.getenv().get("AUTO_SHAPER")+"\\config.properties");
 
 			// load a properties file
 			prop.load(input);
 
 			// get the property value
 			String routerName = prop.getProperty("routerName");
-			return Integer.parseInt(routerName);
+			prop.clear();
+			return (routerName);
 
 		} catch (IOException ex) {
 			ex.printStackTrace();
@@ -99,25 +106,26 @@ public class ConfigReader {
 			}
 		}
 
-		return 0;
+		return "";
 
 	}
 
-	public static int getRouterPass() {
+	public static String getRouterPass() {
 		Properties prop = new Properties();
 		InputStream input = null;
 
 		try {
 
 			input = new FileInputStream(
-					"C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\config.properties");
+					System.getenv().get("AUTO_SHAPER")+"\\config.properties");
 
 			// load a properties file
 			prop.load(input);
 
 			// get the property value
 			String routerPass = prop.getProperty("routerPass");
-			return Integer.parseInt(routerPass);
+			prop.clear();
+			return (routerPass);
 
 		} catch (IOException ex) {
 			ex.printStackTrace();
@@ -131,25 +139,26 @@ public class ConfigReader {
 			}
 		}
 
-		return 0;
+		return "";
 
 	}
 
-	public static int getRouterURL() {
+	public static String getRouterURL() {
 		Properties prop = new Properties();
 		InputStream input = null;
 
 		try {
 
 			input = new FileInputStream(
-					"C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\config.properties");
+					System.getenv().get("AUTO_SHAPER")+"\\config.properties");
 
 			// load a properties file
 			prop.load(input);
 
 			// get the property value
 			String routerURL = prop.getProperty("routerURL");
-			return Integer.parseInt(routerURL);
+			prop.clear();
+			return (routerURL);
 
 		} catch (IOException ex) {
 			ex.printStackTrace();
@@ -163,18 +172,18 @@ public class ConfigReader {
 			}
 		}
 
-		return 0;
+		return "";
 
 	}
 
-	public static int getHistoryPath() {
+	/*public static int getHistoryPath() {
 		Properties prop = new Properties();
 		InputStream input = null;
 
 		try {
 
 			input = new FileInputStream(
-					"C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\config.properties");
+					System.getenv().get("AUTO_SHAPER")+"\\config.properties");
 
 			// load a properties file
 			prop.load(input);
@@ -197,16 +206,16 @@ public class ConfigReader {
 
 		return 0;
 
-	}
+	}*/
 
-	public static int getCurrentPath() {
+	/*public static int getCurrentPath() {
 		Properties prop = new Properties();
 		InputStream input = null;
 
 		try {
 
 			input = new FileInputStream(
-					"C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\config.properties");
+					System.getenv().get("AUTO_SHAPER")+"\\config.properties");
 
 			// load a properties file
 			prop.load(input);
@@ -229,16 +238,16 @@ public class ConfigReader {
 
 		return 0;
 
-	}
+	}*/
 
-	public static int getTailDropListSize() {
+	/*public static int getTailDropListSize() {
 		Properties prop = new Properties();
 		InputStream input = null;
 
 		try {
 
 			input = new FileInputStream(
-					"C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\config.properties");
+					System.getenv().get("AUTO_SHAPER")+"\\config.properties");
 
 			// load a properties file
 			prop.load(input);
@@ -261,7 +270,7 @@ public class ConfigReader {
 
 		return 0;
 
-	}
+	}*/
 
 	public static int getIncrementSize() {
 		Properties prop = new Properties();
@@ -270,13 +279,14 @@ public class ConfigReader {
 		try {
 
 			input = new FileInputStream(
-					"C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\config.properties");
+					System.getenv().get("AUTO_SHAPER")+"\\config.properties");
 
 			// load a properties file
 			prop.load(input);
 
 			// get the property value
 			String incrementSize = prop.getProperty("incrementSize");
+			prop.clear();
 			return Integer.parseInt(incrementSize);
 
 		} catch (IOException ex) {
@@ -294,7 +304,38 @@ public class ConfigReader {
 		return 0;
 
 	}
+	public static int getDecrementSize() {
+		Properties prop = new Properties();
+		InputStream input = null;
 
+		try {
+
+			input = new FileInputStream(
+					System.getenv().get("AUTO_SHAPER")+"\\config.properties");
+
+			// load a properties file
+			prop.load(input);
+
+			// get the property value
+			String decrementSize = prop.getProperty("decrementSize");
+			prop.clear();
+			return Integer.parseInt(decrementSize);
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return 0;
+
+	}
 	public static int getUpperLimit() {
 		Properties prop = new Properties();
 		InputStream input = null;
@@ -302,13 +343,14 @@ public class ConfigReader {
 		try {
 
 			input = new FileInputStream(
-					"C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\config.properties");
+					System.getenv().get("AUTO_SHAPER")+"\\config.properties");
 
 			// load a properties file
 			prop.load(input);
 
 			// get the property value
 			String upperLimit = prop.getProperty("upperLimit");
+			prop.clear();
 			return Integer.parseInt(upperLimit);
 
 		} catch (IOException ex) {
@@ -334,13 +376,14 @@ public class ConfigReader {
 		try {
 
 			input = new FileInputStream(
-					"C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\config.properties");
+					System.getenv().get("AUTO_SHAPER")+"\\config.properties");
 
 			// load a properties file
 			prop.load(input);
 
 			// get the property value
 			String lowerLimit = prop.getProperty("lowerLimit");
+			prop.clear();
 			return Integer.parseInt(lowerLimit);
 
 		} catch (IOException ex) {
@@ -359,21 +402,21 @@ public class ConfigReader {
 
 	}
 	
-	public static int getPolicyChangeLogURL() {
+	/*public static String getPolicyChangeLogURL() {
 		Properties prop = new Properties();
 		InputStream input = null;
 
 		try {
 
 			input = new FileInputStream(
-					"C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\config.properties");
+					System.getenv().get("AUTO_SHAPER")+"\\config.properties");
 
 			// load a properties file
 			prop.load(input);
 
 			// get the property value
 			String policyChangeLogURL = prop.getProperty("policyChangeLogURL");
-			return Integer.parseInt(policyChangeLogURL);
+			return (policyChangeLogURL);
 
 		} catch (IOException ex) {
 			ex.printStackTrace();
@@ -387,25 +430,27 @@ public class ConfigReader {
 			}
 		}
 
-		return 0;
+		return "";
 
-	}
+	}*/
 	
-	public static int getControllerURL() {
+	public static String getControllerURL() {
 		Properties prop = new Properties();
 		InputStream input = null;
 
 		try {
 
 			input = new FileInputStream(
-					"C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\config.properties");
+					System.getenv().get("AUTO_SHAPER")+"\\config.properties");
 
 			// load a properties file
 			prop.load(input);
 
 			// get the property value
 			String controllerURL = prop.getProperty("controllerURL");
-			return Integer.parseInt(controllerURL);
+			
+			prop.clear();
+			return (controllerURL);
 
 		} catch (IOException ex) {
 			ex.printStackTrace();
@@ -419,25 +464,25 @@ public class ConfigReader {
 			}
 		}
 
-		return 0;
+		return "";
 
 	}
 	
-	public static int getGraphTextURL() {
+	/*public static String getGraphTextURL() {
 		Properties prop = new Properties();
 		InputStream input = null;
 
 		try {
 
 			input = new FileInputStream(
-					"C:\\Users\\Public\\Documents\\file2\\GetMonitorStats\\src\\MonitorStats\\config.properties");
+					System.getenv().get("AUTO_SHAPER")+"\\config.properties");
 
 			// load a properties file
 			prop.load(input);
 
 			// get the property value
 			String graphTextURL = prop.getProperty("graphTextURL");
-			return Integer.parseInt(graphTextURL);
+			return (graphTextURL);
 
 		} catch (IOException ex) {
 			ex.printStackTrace();
@@ -451,9 +496,41 @@ public class ConfigReader {
 			}
 		}
 
-		return 0;
+		return "";
+
+	}*/
+	
+	public static long getWaitTimeBetweenPolicyChange() {
+		Properties prop = new Properties();
+		InputStream input = null;
+
+		try {
+
+			input = new FileInputStream(
+					System.getenv().get("AUTO_SHAPER")+"\\config.properties");
+
+			// load a properties file
+			prop.load(input);
+
+			// get the property value
+			String waitTimeBetweenPolicyChange = prop.getProperty("waitTimeBetweenPolicyChange");
+			prop.clear();
+			return Long.parseLong(waitTimeBetweenPolicyChange);
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return 0l;
 
 	}
-
 
 }
